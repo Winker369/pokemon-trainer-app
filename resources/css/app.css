@@ -1,0 +1,29 @@
+.loggedin-body-bg {
+    background-color:#399494;
+}
+
+.loggedout-body-bg {
+    background-color:#399494;
+    background-image: url('http://localhost/images/1st-gen-pokemons-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg-color {
+    background-color: #62d5b4 !important;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    color: #62d5b4
+}
+
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    background-color: #62d5b4;
+    border-color: #62d5b4;
+}

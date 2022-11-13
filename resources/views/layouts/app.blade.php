@@ -15,14 +15,14 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
+<body class="<?= Auth::check() ? 'loggedin-body-bg' : 'loggedout-body-bg' ?>">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color:#62d5b4;">
             <div class="container">
                 <a class="navbar-brand" href="{{ Auth::check() ? url('/home') : url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="/images/pokemon-logo.png" alt="Pokemon" style="height:40px; width:105px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -51,14 +51,17 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('pokemon.index') }}">{{ __('Choose Your Pokemon') }}</a>
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('Trainers') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('pokemon.index') }}">{{ __('Choose Your Pokemons') }}</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->username }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-end bg-color" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('user.edit', Auth::user()->id) }}">
                                         {{ __('Profile') }}
                                     </a>

@@ -6,8 +6,7 @@ use ArchTech\Enums\{Options, Values};
 
 enum Gender: string
 {
-    use Options;
-    use Values;
+    use Options, Values;
 
     case MALE = 'Male';
     case FEMALE = 'Female';

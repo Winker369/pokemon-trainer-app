@@ -2,7 +2,8 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <h3>Like or hate pokemons up to 3 only!</h3>
+        <h1>Choose Your Pokemons</h1>
+        <h3>Like or hate pokemons up to 3 only! And choose your favorite!</h3>
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link active" id="pills-pokemons-tab" data-bs-toggle="pill" data-bs-target="#pills-pokemons" type="button" role="tab" aria-controls="pills-pokemons" aria-selected="true">Pokemons</button>
@@ -17,20 +18,20 @@
         <div class="tab-content" id="pills-tabContent">
           <div class="tab-pane fade show active" id="pills-pokemons" role="tabpanel" aria-labelledby="pills-pokemons-tab">
             <div class="list-group">
-              <a v-for="pokemon, pokemonKey in pokemons" href="#" class="list-group-item list-group-item-action" aria-current="true">
+              <a v-for="pokemon, pokemonKey in pokemons" href="#" class="list-group-item list-group-item-action bg-color" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
                   <h3 class="mb-1">#{{ pokemon.id }} {{ pokemon.name }}</h3>
                   <div>
                     <button
                       v-if="pokemon.favorite"
-                      class="btn btn-primary"
+                      class="btn btn-success"
                       style="margin-right: 10px;"
                       @click="unfavorite(pokemon, pokemonKey)">
                       Favorite
                     </button>
                     <button
                       v-else
-                      class="btn btn-outline-primary"
+                      class="btn btn-outline-success"
                       style="margin-right: 10px;"
                       @click="favorite(pokemon, pokemonKey)">
                       Favorite
@@ -70,20 +71,20 @@
           </div>
           <div class="tab-pane fade" id="pills-liked" role="tabpanel" aria-labelledby="pills-liked-tab">
             <div class="list-group">
-              <a v-for="pokemon, pokemonKey in liked_pokemons" href="#" class="list-group-item list-group-item-action" aria-current="true">
+              <a v-for="pokemon, pokemonKey in liked_pokemons" href="#" class="list-group-item list-group-item-action bg-color" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
                   <h3 class="mb-1">#{{ pokemon.id }} {{ pokemon.name }}</h3>
                   <div>
                     <button
                       v-if="pokemon.favorite"
-                      class="btn btn-primary"
+                      class="btn btn-success"
                       style="margin-right: 10px;"
                       @click="unfavorite(pokemon, pokemonKey)">
                       Favorite
                     </button>
                     <button
                       v-else
-                      class="btn btn-outline-primary"
+                      class="btn btn-outline-success"
                       style="margin-right: 10px;"
                       @click="favorite(pokemon, pokemonKey)">
                       Favorite
@@ -123,20 +124,20 @@
           </div>
           <div class="tab-pane fade" id="pills-hated" role="tabpanel" aria-labelledby="pills-hated-tab">
             <div class="list-group">
-              <a v-for="pokemon, pokemonKey in hated_pokemons" href="#" class="list-group-item list-group-item-action" aria-current="true">
+              <a v-for="pokemon, pokemonKey in hated_pokemons" href="#" class="list-group-item list-group-item-action bg-color" aria-current="true">
                 <div class="d-flex w-100 justify-content-between">
                   <h3 class="mb-1">#{{ pokemon.id }} {{ pokemon.name }}</h3>
                   <div>
                     <button
                       v-if="pokemon.favorite"
-                      class="btn btn-primary"
+                      class="btn btn-success"
                       style="margin-right: 10px;"
                       @click="unfavorite(pokemon, pokemonKey)">
                       Favorite
                     </button>
                     <button
                       v-else
-                      class="btn btn-outline-primary"
+                      class="btn btn-outline-success"
                       style="margin-right: 10px;"
                       @click="favorite(pokemon, pokemonKey)">
                       Favorite

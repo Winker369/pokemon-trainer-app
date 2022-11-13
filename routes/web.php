@@ -16,9 +16,13 @@ use App\Http\Controllers\PokemonController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/** Index */
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+/** Index */
+Route::get('/', [HomeController::class, 'index']);
 
 /** User Authentication */
 Auth::routes();

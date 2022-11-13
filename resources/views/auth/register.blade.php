@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card bg-color">
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
@@ -73,8 +73,9 @@
                             <div class="col-md-6">
                                 <select id="gender" class="form-control @error('gender') is-invalid @enderror" aria-label=".form-select-lg example" name="gender" value="{{ old('gender') }}" autocomplete="gender" autofocus>
                                     <option selected>Are you a boy? Or are you a girl?</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    @foreach (App\Enums\Gender::values() as $value)
+                                    <option value="{{ $value }}" <?= $value == old('gender') ? ' selected' : '' ?>>{{ $value }}</option>
+                                    @endforeach
                                 </select>
 
                                 @error('gender')
