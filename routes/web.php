@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PokemonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,24 @@ Auth::routes();
 /** User Dashboard */
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-/** Profile */
+/** User */
 Route::resource('user', UserController::class)
-    ->only([
-        'edit', 'update'
-    ]);
+    ->only(['edit', 'update']);
+
+/** Pokemon */
+Route::prefix('pokemon')->name('pokemon.')->group(function () {
+    Route::get('', [PokemonController::class, 'index'])
+        ->name('index');
+    Route::post('favorite', [PokemonController::class, 'favorite'])
+        ->name('favorite');
+    Route::delete('{pokemon}/unfavorite', [PokemonController::class, 'unfavorite'])
+        ->name('unfavorite');
+    Route::post('like', [PokemonController::class, 'like'])
+        ->name('like');
+    Route::delete('{pokemon}/unlike', [PokemonController::class, 'unlike'])
+        ->name('unlike');
+    Route::post('hate', [PokemonController::class, 'hate'])
+        ->name('hate');
+    Route::delete('{pokemon}/unhate', [PokemonController::class, 'unhate'])
+        ->name('unhate');
+});

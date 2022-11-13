@@ -50,4 +50,12 @@ class User extends Authenticatable
         // Causes issue with conditional rendering in $value == $user->gender ? ' selected' : ''
         // 'gender' => Gender::class
     ];
+
+    /**
+     * Get the pokemons for the user.
+     */
+    public function userPokemon()
+    {
+        return $this->hasMany(UserPokemon::class);
+    }
 }

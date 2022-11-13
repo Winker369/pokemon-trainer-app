@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use PokePHP\PokeApi;
 
 class HomeController extends Controller
 {
@@ -24,9 +23,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $pokeApi = new PokeApi;
-        // $pokemon = json_decode($pokeApi->pokemon('1'), true);
-        // dd($pokemon);
         return view('home');
     }
 }

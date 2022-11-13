@@ -7,6 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
@@ -50,7 +51,7 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="#">{{ __('Choose Your Pokemon') }}</a>
+                                <a class="nav-link" href="{{ route('pokemon.index') }}">{{ __('Choose Your Pokemon') }}</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

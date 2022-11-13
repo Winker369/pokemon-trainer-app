@@ -58,6 +58,8 @@ return [
 
     'asset_url' => env('ASSET_URL'),
 
+    'pokemon_api_url' => env('POKEMON_API_URL', 'https://pokeapi.co/api/v2/'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
