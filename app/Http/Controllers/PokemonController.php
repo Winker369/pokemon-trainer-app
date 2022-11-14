@@ -23,14 +23,27 @@ class PokemonController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $requestQueryParams = $request->query();
+        $queryParams = [
+            'limit' => 20,
+            'offset' => 0
+        ];
+
+        // Check if there are requestquery params
+        if ($requestQueryParams) {
+            // Get limit and offset
+            $component = parse_url($requestQueryParams['url']);
+            parse_str($component['query'], $queryParams);
+        }
         // Get users pokemons like and hate
         $userPokemons = User::find(auth()->user()->id)->userPokemon()->get();
         $pokeApi = new PokeApi;
-        $resourceList = json_decode($pokeApi->resourceList('pokemon', 10, 0), true);
+        $resourceList = json_decode($pokeApi->resourceList('pokemon', $queryParams['limit'], $queryParams['offset']), true);
         $pokemons = collect($resourceList['results']);
         $results = $pokemons->map(function ($pokemon, $pokemonKey) use ($userPokemons) {
             // Search pokemon
@@ -49,14 +62,27 @@ class PokemonController extends Controller
             return $pokemon;
         })
         ->toArray();
-        // Update with reaction key
+        // Update with reaction key and others
         $resourceList['results'] = $results;
         // Add like and hate pokemon as a list
         $likeAndHatePokemons = $this->getLikeAndHate($userPokemons);
         $resourceList['liked_pokemons'] = $likeAndHatePokemons['liked_pokemons'];
         $resourceList['hated_pokemons'] = $likeAndHatePokemons['hated_pokemons'];
 
-        return view('pokemon.index', compact('resourceList'));
+        // Check if return response as http response or view
+        if ($requestQueryParams) {
+            $response = [
+                'status_code' => 200,
+                'body' => [
+                    'message' =>  'Successfully retrieved pokemon',
+                    'data' => $resourceList
+                ]
+            ];
+
+            return response()->json($response, $response['status_code']);
+        } else {
+            return view('pokemon.index', compact('resourceList'));
+        }
     }
 
     /**
